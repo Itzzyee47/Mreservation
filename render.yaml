@@ -1,0 +1,22 @@
+databases:
+  - name: Mreservation
+    plan: free
+    databaseName: Mreservation
+    user: ItzZyee
+
+services:
+  - type: web
+    plan: free
+    name: Mreservation
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: Mreservation
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
