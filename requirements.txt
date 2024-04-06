@@ -1,3 +1,4 @@
+whitenoise[brotli]
 dj-database-url
 psycopg2-binary
 asgiref==3.8.1
